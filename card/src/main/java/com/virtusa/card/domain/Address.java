@@ -1,15 +1,19 @@
 package com.virtusa.card.domain;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Address {
 
 	@Id
+	@GeneratedValue
 	long id;
 	
 	@Column
@@ -24,10 +28,9 @@ public class Address {
 	@Column
 	String state;
 	
-	@ManyToOne
-	@JoinColumn
-	User user;
-	public Address(long id, String street, String locality, String city, String state, User user) {
+	@OneToMany(mappedBy="address",cascade= {CascadeType.ALL})
+	List<User> user;
+	public Address(long id, String street, String locality, String city, String state, List<User> user) {
 		super();
 		this.id = id;
 		this.street = street;
@@ -70,7 +73,7 @@ public class Address {
 		this.state = state;
 	}
 
-	public void setUser(User user) {
+	public void setUser(List<User> user) {
 		this.user = user;
 	}
 	@Override

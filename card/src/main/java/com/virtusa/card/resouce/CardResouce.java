@@ -1,7 +1,5 @@
 package com.virtusa.card.resouce;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -11,7 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.virtusa.card.Repository.UserRepo;
 import com.virtusa.card.Service.CardService;
-import com.virtusa.card.domain.CreditCard;
 import com.virtusa.card.domain.User;
 
 @RestController
@@ -25,6 +22,7 @@ public class CardResouce {
 	
 	@PostMapping(value="/credit-cards")
 	public String saveCard(@RequestBody User user) {
+		System.out.println(user);
 		return cardService.SaveCard(user);	
 	}
 	
